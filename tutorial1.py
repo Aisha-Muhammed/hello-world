@@ -20,9 +20,9 @@ class Tutorial1Spider(scrapy.Spider):
             formatted_response = response.content.replace('<!--', '').replace('-->', '')
             doc = html.fromstring(formatted_response)
             datafrom_xpath = doc.xpath('//code[@id="global-header-promo-top-bar-embed-id-content"]//text()')
-            content_about = doc.xpath('//code[@id="global-header-about-section-embed-id-content"]')
+            content_about = doc.xpath('//code[@id="main_content-about-section-embed-id-content"]')
             if not content_about:
-                content_about = doc.xpath('//code[@id="global-header-footer-embed-id-content"]')
+                content_about = doc.xpath('//code[@id="global-footer-footer-embed-id-content"]')
             if content_about:
                 pass
                 # json_text = content_about[0].html_content().replace('<code id="stream-footer-embed-id-content"><!--','').replace('<code id="stream-about-section-embed-id-content"><!--','').replace('--></code>','')
