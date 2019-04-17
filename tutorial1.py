@@ -13,16 +13,16 @@ class Tutorial1Spider(scrapy.Spider):
     for i in range(5):
         try:
             headers = {
-                        'User-Agent': 'Mozilla Firefox / 66.0.2 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) /'
+                        'User-Agent': 'Mozilla Firefox / 66.0.2 /'
             }
             print "Fetching :",url     
             response = requests.get(url, headers = headers,verify=False)
             formatted_response = response.content.replace('<!--', '').replace('-->', '')
             doc = html.fromstring(formatted_response)
-            datafrom_xpath = doc.xpath('//code[@id="stream-promo-top-bar-embed-id-content"]//text()')
-            content_about = doc.xpath('//code[@id="stream-about-section-embed-id-content"]')
+            datafrom_xpath = doc.xpath('//code[@id="global-header-promo-top-bar-embed-id-content"]//text()')
+            content_about = doc.xpath('//code[@id="global-header-about-section-embed-id-content"]')
             if not content_about:
-                content_about = doc.xpath('//code[@id="stream-footer-embed-id-content"]')
+                content_about = doc.xpath('//code[@id="global-header-footer-embed-id-content"]')
             if content_about:
                 pass
                 # json_text = content_about[0].html_content().replace('<code id="stream-footer-embed-id-content"><!--','').replace('<code id="stream-about-section-embed-id-content"><!--','').replace('--></code>','')
